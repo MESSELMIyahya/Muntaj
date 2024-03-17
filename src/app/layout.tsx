@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Rubik as FontSans } from "next/font/google"
+import { Cairo as FontSans } from "next/font/google"
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
