@@ -55,6 +55,7 @@
     @apply border-border;
   }
   body {
+    direction: rtl;
     @apply bg-background text-foreground;
   }
 }
