@@ -3,6 +3,8 @@ import { Cairo as FontSans } from "next/font/google"
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
+import getServerAuth from "@/auth/server";
+import AuthProvider from "@/auth";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -15,19 +17,20 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({children}:Readonly<{children: React.ReactNode;}>) {
+  await getServerAuth();
+  
   return (
-    <html lang="en">
+    <html lang="ar">
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
-        )}
-      >{children}</body>
+        )}>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+          </body>
     </html>
   );
 }
