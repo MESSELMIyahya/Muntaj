@@ -3,7 +3,6 @@ import { Cairo as FontSans } from "next/font/google"
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-import getServerAuth from "@/auth/server";
 import AuthProvider from "@/auth";
 
 const fontSans = FontSans({
@@ -18,8 +17,6 @@ export const metadata: Metadata = {
 
 
 export default async function RootLayout({children}:Readonly<{children: React.ReactNode;}>) {
-  await getServerAuth();
-  
   return (
     <html lang="ar">
       <body
