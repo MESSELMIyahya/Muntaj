@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { UserDataType } from "..";
 import { registerFunctionType, authenticateFunctionType, loginFunctionType, logoutFunctionType } from './type'
 import AxiosReq from "@/lib/axios";
-
+import { useRouter } from 'next/navigation'
 
 
 export interface AuthContextType {
@@ -38,10 +38,10 @@ interface PropsType {
 
 // context provider
 function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: PropsType) {
+    const { refresh } = useRouter()
     const [isAuthenticated, setIsAuthenticated] = useState(serverAuthenticated || false);
     const [isLoading, setIsLoading] = useState(false);
     const [userData, setUserData] = useState<UserDataType | null>(preAuth && data ? data?.user : null);
-
     // auth 
     useEffect(() => {
         (async () => {
@@ -50,8 +50,8 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
                 const res = await AxiosReq.get('auth/is-authenticated')
                 if (res.status == 200 && res.data.authenticated && res.data.user) {
                     setIsAuthenticated(true);
-                    console.log(res.data.user);
                     setUserData(res.data.user);
+                    refresh()
                 }
             } catch (err) {
                 setIsAuthenticated(false);
@@ -73,6 +73,7 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
             if (res.status == 200 && res.data.authenticated && res.data.user) {
                 setIsAuthenticated(true);
                 setUserData(res.data.user);
+                refresh()
             }
         } catch (err) {
             setIsAuthenticated(false);
@@ -102,6 +103,7 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
             await AxiosReq.delete('auth/logout');
             setIsAuthenticated(false);
             setUserData(null);
+            refresh()
         } catch (err) {
             setIsAuthenticated(false);
             setUserData(null);
