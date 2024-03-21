@@ -1,0 +1,31 @@
+{
+
+    "components":{
+
+        "header":{
+            "title":"منتوج",
+            "likes":{
+                "login":"تسجيل الدخول",
+                "register":"تسجيل"
+            },
+            "searchBar":{
+                "placeholder":"ابحث عن"
+            },
+            "user":{
+                "logout":"خروج",
+                "store":{
+                    "store":"متجرك",
+                    "no":"ليس لديك متجر",
+                    "create":"إنشاء متجر"
+                },
+                "sitting":"الإعدادات"
+            }
+        },
+
+        "footer":{
+            "rights":"© 2024 Muntaj. All rights reserved.",
+            "by":"تم تصميم هذا  الموقع من قبل فريق المنتجون في مسابقة",
+            "like":"هاكاثون رمضان ١٤٤٥"
+        }
+    }
+}
