@@ -1,0 +1,40 @@
+{
+
+    "title":"مرحبا بك في منصة منتوج",
+    "description":"قم بأنشاء حساب جديد من خلال إكمال المعلومات التالية",
+    "noAccount":"لديك حساب",
+    "register":"سجل الدخول",
+    "or":"او",
+    "googleLogin":"تسجيل باستخدام جوجل",
+    "form":{
+        "loginError":"حدث مشكل اثناء تسجيل الدخول تاكد من المعلومات و حاول مرة اخرى",
+        
+        "emailLabel":"الحساب",
+        "emailPlaceholder":"you@gmail.com",
+        "emailTakenError":"تم استخدام هذا الإيميل من قبل يرجى ادخال اخر او تسجيل الدخول",
+        "wrongEmailError":"الحساب ليس صحيح",
+        
+        "passwordLabel":"كلمة المرور",
+        "passwordPlaceholder":"كلمة السر",
+        "wrongPasswordError":"أكمل كلمة السر",
+        "noMatchPasswordError":"كلمات السر لا تتطابق",
+
+        "firstNameLabel":"الأسم الاول",
+        "firstNamePlaceholder":"أسمك الاول",
+        "wrongFirstNameError":"يجب ان يكون اسم الاول اكثر من ثلاث احرف",
+
+        "lastNameLabel":"أسم العائلة",
+        "lastNamePlaceholder":"أسم عائلتك",
+        "wrongLastNameError":"يجب ان يكون اسم العائلة اكثر من ثلاث احرف",
+
+        "userNameLabel":"أسم المستخدم",
+        "userNamePlaceholder":"كنيتك",
+        "wrongUserNameError":"يجب ان يكون اسم المستخدم اكثر من خمس احرف",
+
+        "passwordConfirmLabel":"تأكيد كلمة المرور",
+        "passwordConfirmPlaceholder":"كلمة السر",
+
+        "loginButton":"إنشاء حساب جديد"
+    }
+
+}
