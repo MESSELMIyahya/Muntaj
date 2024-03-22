@@ -3,7 +3,11 @@
 // register
 
 interface RegisterUserBodyType {
-    name:string;
+    firstName:string;
+    lastName:string;
+    password:string;
+    userName:string;
+    email:string;
 }   
 
 export type registerFunctionType = (body:RegisterUserBodyType)=> Promise<boolean>
