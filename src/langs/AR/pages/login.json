@@ -1,6 +1,20 @@
 {
 
-    "title":"",
-    "description":""
+    "title":"مرحبا بك في منصة منتوج",
+    "description":"سجل الدخول باستخدام احد الحسابات التالية",
+    "noAccount":"ليس لديك حساب",
+    "register":"أنشاء حساب",
+    "or":"او",
+    "googleLogin":"تسجيل الدخول باستخدام جوجل",
+    "form":{
+        "wrongEmailError":"الحساب ليس صحيح",
+        "wrongPasswordError":"أكمل كلمة السر",
+        "loginError":"حدث مشكل اثناء تسجيل الدخول تاكد من المعلومات و حاول مرة اخرى",
+        "emailLabel":"الحساب",
+        "emailPlaceholder":"you@gmail.com",
+        "passwordLabel":"كلمة المرور",
+        "passwordPlaceholder":"كلمة السر",
+        "loginButton":"تسجيل الدخول"
+    }
 
 }
