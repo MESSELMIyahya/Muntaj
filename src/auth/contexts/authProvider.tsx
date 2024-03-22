@@ -39,7 +39,7 @@ interface PropsType {
 
 // context provider
 function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: PropsType) {
-    const { refresh } = useRouter()
+    const { refresh,replace } = useRouter()
     const [isAuthenticated, setIsAuthenticated] = useState(serverAuthenticated || false);
     const [isLoading, setIsLoading] = useState(false);
     const [userData, setUserData] = useState<UserDataType | null>(preAuth && data ? data?.user : null);
@@ -104,7 +104,7 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
         // redirect the client to server google login page
         const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000';
         if(pro == 'google'){
-            window.open(`${serverURL}/auth/oauth/google/login`);
+            replace(`${serverURL}/auth/oauth/google/login`);
         }
     }
 
