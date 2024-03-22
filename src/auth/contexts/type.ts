@@ -24,3 +24,7 @@ interface LoginUserBodyType {
 }
 
 export type loginFunctionType = (body:LoginUserBodyType) => Promise<boolean>
+
+
+type providers = 'google';
+export type loginOAuthFunctionType = (pro:providers) => Promise<void>

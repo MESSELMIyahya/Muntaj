@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useEffect, useState } from "react";
 import { UserDataType } from "..";
-import { registerFunctionType, authenticateFunctionType, loginFunctionType, logoutFunctionType } from './type'
+import { registerFunctionType, authenticateFunctionType, loginFunctionType,loginOAuthFunctionType, logoutFunctionType } from './type'
 import AxiosReq from "@/lib/axios";
 import { useRouter } from 'next/navigation'
 
@@ -18,6 +18,7 @@ export interface AuthContextType {
     methods: {
         authenticate: authenticateFunctionType;
         login: loginFunctionType,
+        loginOAuth:loginOAuthFunctionType,
         logout:logoutFunctionType
         register:registerFunctionType
     }
@@ -97,6 +98,16 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
         }
     }
 
+    // Login With OAuth like 'google'
+    const loginOAuth: loginOAuthFunctionType = async (pro) => {
+        if (isAuthenticated) return ;
+        // redirect the client to server google login page
+        const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000';
+        if(pro == 'google'){
+            window.open(`${serverURL}/auth/oauth/google/login`);
+        }
+    }
+
     // Logout
     const logout: logoutFunctionType = async () => {
         try {
@@ -130,6 +141,7 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
         methods: {
             authenticate,
             register,
+            loginOAuth,
             login,
             logout
         }
