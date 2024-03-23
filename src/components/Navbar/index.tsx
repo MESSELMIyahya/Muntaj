@@ -16,7 +16,7 @@ export default async function Navbar() {
     const { isAuthenticated } = await getServerAuth();
 
 
-    return (<><header className="w-full fixed top-0 left-0 bg-card border-b shadow-sm">
+    return (<><header className="w-full fixed top-0 left-0 z-50 bg-card border-b shadow-sm">
 
         <div className="container w-full flex items-center justify-between py-3">
 
@@ -90,6 +90,6 @@ export default async function Navbar() {
 
     </header>
 
-        <div className="w-full py-10 " />
+        <div className="w-full py-4 lg:py-2 " />
     </>)
 }
