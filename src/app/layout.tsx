@@ -28,7 +28,7 @@ export default async function RootLayout({
         )}
       >
         <AuthProvider>
-          {/*  */}
+          {/* @ts-expect-error */}
         <Navbar />
           {children}
         </AuthProvider>

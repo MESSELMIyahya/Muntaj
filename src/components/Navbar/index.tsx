@@ -74,7 +74,7 @@ export default async function Navbar() {
                                     <DropdownMenuItem >
                                         <Button asChild className='w-full'>
                                             <Link href="/login">
-                                                {Texts.login}
+                                                {Texts.register}
                                             </Link>
                                         </Button>
                                     </DropdownMenuItem>
