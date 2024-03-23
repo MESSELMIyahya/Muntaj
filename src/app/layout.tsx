@@ -27,8 +27,11 @@ export default async function RootLayout({
           fontSans.variable
         )}
       >
+        <AuthProvider>
+          {/*  */}
         <Navbar />
-        <AuthProvider>{children}</AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

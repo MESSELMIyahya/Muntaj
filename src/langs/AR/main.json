@@ -3,7 +3,7 @@
     "components":{
 
         "header":{
-            "title":"منتوج",
+            "title":"منتج",
             "likes":{
                 "login":"تسجيل الدخول",
                 "register":"تسجيل"
@@ -11,6 +11,8 @@
             "searchBar":{
                 "placeholder":"ابحث عن"
             },
+            "login":"تسجيل الدخول",
+            "register":"إنشاء حساب",
             "user":{
                 "logout":"خروج",
                 "store":{
