@@ -20,19 +20,19 @@ interface Props {
 export default function CategoriesSection({ items }: Props) {
     return (<SectionPart className="w-full flex justify-center">
 
-        <div className="w-2/3 flex justify-center gap-6 flex-wrap">
+        <div className="w-full sm:w-4/3 md:w-2/3 flex justify-center gap-6 flex-wrap">
 
             {
                 items.map(e =>
 
-                    <div className="max-w-fit flex flex-col gap-2 items-center">
+                    <div className="max-w-fit flex flex-col gap-1 md:gap-2 items-center">
 
                         <Button asChild variant='ghost' className="w-fit h-fit p-0 rounded-full">
                             <Link href={e.link}>
                                 <CategoryItem size="lg" Icon={e.Icon} />
                             </Link>
                         </Button>
-                        <p className="text-base font-medium text-accent-foreground">{e.title}</p>
+                        <p className="text-sm md:text-base font-medium text-accent-foreground">{e.title}</p>
                     </div>
                 )
             }
