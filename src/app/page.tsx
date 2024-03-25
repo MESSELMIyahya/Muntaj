@@ -1,30 +1,24 @@
 import CategoriesSection from "@/components/CategoriesPart";
 import MainAD from "@/components/MainAd";
 import PageSection from "@/components/PageSection";
+import ProductCard from "@/components/ProductCard";
 import SectionPart from "@/components/SectionPart";
 import SquareAD from "@/components/SquareAd";
-import { LuApple, LuBaby, LuCpu, LuDumbbell, LuHome, LuMonitor, LuRefrigerator, LuShirt, LuStethoscope, LuToyBrick } from 'react-icons/lu'
+import { categoriesIds, getCategoryIcon, getCategoryNameById } from "@/lib/category";
+import getProducts from "@/lib/products";
+
 
 const ImageAdURL = 'https://media.ouedkniss.com/medias/images/EZAgm/UMHWDudx17WET5Yitn5p8r8yFaSRz1WMt1BWpEWc.jpg';
 
 
-const CategoriesAll = 
-[
-  "Computer" // => الكمبيوتر
-, "Fashion" // => موضة
-, "Food" // => طعام
-, "Electronics " // => الالكترونيات
-, "Baby & Childcare"  // => رعاية الطفل
-, "Household Appliances" // => الأجهزة المنزلية
-, "Home & Kitchen" // => المنزل والمطبخ
-, "Sport stuff" // => اشياء رياضية
-, "Medical" // => طبي
-, "Toys" // => ألعاب الأطفال
-]
+export default async function HomePage() {
+  const products = await getProducts();
 
-
-export default function HomePage() {
-
+  const categories = categoriesIds.map(e=>({ 
+    Icon:getCategoryIcon(e),
+    title:getCategoryNameById(e),
+    link:`/category/${e}`
+   }))
 
   return (<PageSection className="">
 
@@ -40,62 +34,32 @@ export default function HomePage() {
 
     </SectionPart>
 
+    {/* Categories Section */}
 
-    <CategoriesSection items={[
+    <CategoriesSection items={categories} />
 
-      {
-        Icon:LuMonitor,
-        link:'https://google.com',
-        title:"الكمبيوتر"
-      },
-      {
-        Icon:LuShirt ,
-        link:'https://google.com',
-        title:"موضة"
-      },
-      {
-        Icon:LuApple,
-        link:'https://google.com',
-        title:"طعام"
-      },
-      {
-        Icon:LuCpu,
-        link:'https://google.com',
-        title:"الالكترونيات"
-      },
-      {
-        Icon:LuBaby,
-        link:'https://google.com',
-        title:"رعاية الطفل"
-      },
-      {
-        Icon:LuRefrigerator,
-        link:'https://google.com',
-        title:"الأجهزة المنزلية"
-      },
-      {
-        Icon:LuHome,
-        link:'https://google.com',
-        title:"المنزل والمطبخ"
-      },
-      {
-        Icon:LuDumbbell,
-        link:'https://google.com',
-        title:"اشياء رياضية"
-      },
-      {
-        Icon:LuStethoscope ,
-        link:'https://google.com',
-        title:"طبي"
-      },
-      {
-        Icon:LuToyBrick ,
-        link:'https://google.com',
-        title:"ألعاب الأطفال"
-      }
+    {/* Products Page */}
 
-    ]} />
+    <SectionPart className="columns-1 md:columns-2 lg:columns-3 ">
 
+    {
+        products && products.map((e)=>
+          <ProductCard
+            key={e._id}
+            category={e.category}
+            country={e.country}
+            description={e.description}
+            title={e.name}
+            image={e.primaryImage}
+            rated={false}
+            id={e._id}
+            rating={e.rating ||  0}
+            store={{ name:e.store.name, id: e._id }}
+          />
+        )
+    }
+    
+    </SectionPart>
 
   </PageSection>)
 }
