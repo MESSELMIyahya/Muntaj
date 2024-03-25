@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useEffect, useState } from "react";
 import { UserDataType } from "..";
-import { registerFunctionType, authenticateFunctionType, loginFunctionType,loginOAuthFunctionType, logoutFunctionType } from './type'
+import { registerFunctionType, authenticateFunctionType, loginFunctionType,loginOAuthFunctionType, logoutFunctionType, updateFunctionType } from './type'
 import AxiosReq from "@/lib/axios";
 import { useRouter } from 'next/navigation'
 
@@ -19,6 +19,7 @@ export interface AuthContextType {
         authenticate: authenticateFunctionType;
         login: loginFunctionType,
         loginOAuth:loginOAuthFunctionType,
+        update:updateFunctionType,
         logout:logoutFunctionType
         register:registerFunctionType
     }
@@ -98,6 +99,17 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
         }
     }
 
+    // Update
+    const update: updateFunctionType = async () => {
+        try {
+            await AxiosReq.post('auth/new-access-token');
+            await authenticate();
+            return true;
+        } catch (err) {
+            throw err;
+        }
+    }
+
     // Login With OAuth like 'google'
     const loginOAuth: loginOAuthFunctionType = async (pro) => {
         if (isAuthenticated) return ;
@@ -142,6 +154,7 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
             authenticate,
             register,
             loginOAuth,
+            update,
             login,
             logout
         }

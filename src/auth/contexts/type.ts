@@ -20,6 +20,9 @@ export type authenticateFunctionType = ()=> Promise<void>
 // authenticate type
 export type logoutFunctionType = ()=> Promise<void>
 
+// update function type
+export type updateFunctionType = ()=> Promise<boolean>
+
 
 // login type 
 interface LoginUserBodyType {
