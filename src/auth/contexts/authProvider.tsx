@@ -102,7 +102,7 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
     // Update
     const update: updateFunctionType = async () => {
         try {
-            await AxiosReq.post('auth/new-access-token');
+            await AxiosReq.put('auth/update');
             await authenticate();
             return true;
         } catch (err) {
