@@ -7,18 +7,18 @@ const testProds : ProductType[] = [
     {   
         _id:'f093hf93fh0',
         category:'ct4',
-        country:'dz',
-        images:[],
+        country:'eg',
+        images:[testImg,testImg,testImg,testImg],
         primaryImage:testImg,
-        description:'ساعة ذكية احترافية مصنعة ومنتجة في الجزائر تحتوي على الكثير من المزايا',
+        description:'ساعة ذكية احترافية مصنعة ومنتجة في مصر تحتوي على الكثير من المزايا',
         store:{
             country:'dz',
             _id:'092hf903fh',
             name:"TechDz",
-            photo:'',
+            photo:testImg,
             rating:5
         },
-        name:"ساعة ذكية واحترافية  مصنعة في الجزائر",
+        name:"ساعة ذكية واحترافية  مصنعة في مصر",
         videoURL:'',
         rating:100,
         colors:[],
@@ -29,6 +29,11 @@ const testProds : ProductType[] = [
 
 async function getProducts(n:number=10) : Promise<ProductType[]> {
     return [...testProds,...testProds,...testProds]
+}
+
+
+export async function getProduct(id:string):Promise<ProductType>{
+    return testProds[0]
 }
 
 
