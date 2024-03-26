@@ -36,7 +36,7 @@ export default function UserSettingDialog({ setToggle, toggle }: Props) {
         if (!files || !files[0]) return;
         const file = files[0];
         if (file.size > 2_097_152) {
-            setImgErr('يجب ان يكون حجم الصورة اقل من 2 ميجابايت');
+            setImgErr('يجب ان يكون حجم الصورة اقل من 2MB');
             return
         }
         const url = URL.createObjectURL(file);
@@ -85,7 +85,7 @@ export default function UserSettingDialog({ setToggle, toggle }: Props) {
                             صورة الملف الشخصي
                         </span>
 
-                        <input onChange={(e) => updateLoadImage(e.target.files as File[] | null)} id="img" type="file" className="hidden" />
+                        <input onChange={(e) => updateLoadImage(e.target.files as File[] | null)} accept="image/png, image/jpeg , image/jpg" id="img" type="file" className="hidden" />
 
                         <label style={{ backgroundImage: `url('${imgURLShower}')` }} htmlFor="img" className="w-16 h-16 bg-card border hover:opacity-60 cursor-pointer bg-center bg-cover rounded-full">
 
