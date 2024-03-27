@@ -10,14 +10,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import getProducts from "@/lib/products";
-
-const imgURL =
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0LgIPwB4gjYlOy5_YtiC7GSU5VJQVBgwG2w&s";
+import { getProduct } from "@/lib/products";
 
 export default async function page() {
-  const products = await getProducts();
-  const product = products.find((prod) => prod._id === "f093hf93fh0");
+  // need to get product id from url
+  const product = await getProduct("ss");
 
   if (!product) {
     return (

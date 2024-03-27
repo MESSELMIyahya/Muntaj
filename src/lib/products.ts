@@ -31,8 +31,9 @@ async function getProducts(n: number = 10): Promise<ProductType[]> {
   return [...testProds, ...testProds, ...testProds];
 }
 
-export async function getProduct(id: string): Promise<ProductType> {
+async function getProduct(id: string): Promise<ProductType> {
   return testProds[0];
 }
 
 export default getProducts;
+export { getProduct };
