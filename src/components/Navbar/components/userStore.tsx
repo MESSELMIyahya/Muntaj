@@ -173,30 +173,6 @@ export default function UserCreateStoreDialog({ setToggle, toggle }: Props) {
     setIsLoading(false)
   };
 
-
-
-  // async function handleCreateStore() {
-  //     setUserNameErr('');
-  //     setImgErr('');
-  //     setIsLoading(true)
-  //     try {
-  //         // userNameSchema.parse(userName);
-  //     } catch {
-  //         setUserNameErr("يجب ان يكون اسم المستخدم اكثر من 4 احرف");
-  //         setIsLoading(false);
-  //         return;
-  //     }
-  //     try {
-  //         const body = new FormData()
-  //         if(imageFile) body.append('profileImage', imageFile);
-  //         if(userName) body.append('userName', userName)
-  //         await updateData(body as never);
-  //     } catch (err) {
-  //         console.log('something  went wrong', err);
-  //     }
-  //     setIsLoading(false);
-  // }
-
   return (
     <Dialog open={toggle} onOpenChange={setToggle}>
       <DialogContent className="sm:max-w-full md:w-[45em]">
