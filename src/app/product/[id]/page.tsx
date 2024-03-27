@@ -1,29 +1,50 @@
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { HiStar } from 'react-icons/hi';
-
-import Image from 'next/image';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { HiStar } from "react-icons/hi";
+import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-const imgURL =
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0LgIPwB4gjYlOy5_YtiC7GSU5VJQVBgwG2w&s';
+} from "@/components/ui/card";
+import getProducts from "@/lib/products";
+import { ProductType } from "@/types/types";
 
-export default function page() {
+const imgURL =
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0LgIPwB4gjYlOy5_YtiC7GSU5VJQVBgwG2w&s";
+
+export default async function page() {
+  const products = await getProducts();
+  const product = products.find((prod) => prod._id === "f093hf93fh0");
+
+  if (!product) {
+    return (
+      <div>
+        <h1>Loading......</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-16 max-w-6xl m-auto space-y-10">
       <Card className="grid gap-8 grid-cols-3">
-        <CardHeader className="col-span-1 bg-yellow-200">
-          <Image src={imgURL} width={800} height={800} alt="product" />
+        <CardHeader className="col-span-1 ">
+          <Image
+            src={product.primaryImage}
+            width={800}
+            height={800}
+            alt="product"
+          />
         </CardHeader>
 
         <CardContent className="col-span-2 space-y-4 mt-4">
-          <ProductContent />
+          <ProductContent
+            category={product.category}
+            description={product.description}
+          />
         </CardContent>
       </Card>
 
@@ -55,23 +76,20 @@ export default function page() {
   );
 }
 
-function ProductContent() {
+function ProductContent({
+  category,
+  description,
+}: {
+  category: string;
+  description: string;
+}) {
   return (
     <>
-      <Badge>الكترونيات</Badge>
+      <Badge>{category}</Badge>
       <h1 className="text-2xl">
         وحدة تحكم بلاي ستيشن 5 (إصدار القرص) مع وحدة التحكم
       </h1>
-      <p className="text-lg">
-        منتج يتميز بسرعة عالية - استغل قوة وحدة المعالجة المركزية المخصصة وبطاقة
-        الرسومات ومحرك الأقراص SSD مع وحدات الإدخال والإخراج المدمجة التي تعمل
-        على إعادة كتابة القواعد التي يمكن لجهاز الألعاب بلايستيشن فعلها. ألعاب
-        مذهلة - استمتع برسومات مذهلة واستمتع بتجربة ميزات PS5 الجديدة. انغماس
-        مذهل - اكتشف تجربة ألعاب أعمق مع دعم التغذية الراجعة اللمسية والمحفزات
-        التكيفية وتقنية الصوت ثلاثية الأبعاد. استمتع بلعب سلس ومرن وذي معدل
-        إطارات عالٍ يصل إلى 120 إطار في الثانية للألعاب المتوافقة. بفضل تقنية
-        HDR tv،
-      </p>
+      <p className="text-lg">{description}</p>
       <div className="flex items-center gap-6">
         <Button className="w-full">تواصل</Button>
         <Button variant="outline" size="icon">
