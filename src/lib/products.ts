@@ -1,6 +1,7 @@
 import { ProductType } from "@/types/types";
 
-const testImg = 'https://m.media-amazon.com/images/I/51-TFGHQE2L._AC_SX569_.jpg';
+const testImg =
+  "https://m.media-amazon.com/images/I/51-TFGHQE2L._AC_SX569_.jpg";
 
 
 export const testProds : ProductType[] = [
@@ -31,10 +32,8 @@ async function getProducts(n:number=10) : Promise<ProductType[]> {
     return [...testProds,...testProds,...testProds]
 }
 
-
-export async function getProduct(id:string):Promise<ProductType>{
-    return testProds[0]
+export async function getProduct(id: string): Promise<ProductType> {
+  return testProds[0];
 }
 
-
-export default getProducts ;
+export default getProducts;
