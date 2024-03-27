@@ -8,9 +8,9 @@ import {
 } from "@/components/ui/card";
 import getStore from "@/lib/store";
 import Image from "next/image";
-import { HiStar } from "react-icons/hi";
 import getProducts from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
+import RatingStar from "@/components/RatingStars";
 
 export default async function page() {
   const products = await getProducts();
@@ -101,21 +101,6 @@ export default async function page() {
             ))}
         </CardContent>
       </Card>
-    </div>
-  );
-}
-
-function RatingStar({ rate }: { rate: number }) {
-  return (
-    <div className="flex gap-1">
-      {Array.from({ length: 5 }).map((_, index) => (
-        <HiStar
-          key={index}
-          className={`size-6 transition-colors ${
-            rate > index ? "text-amber-500" : "text-neutral-300"
-          }`}
-        />
-      ))}
     </div>
   );
 }

@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getProduct } from "@/lib/products";
+import RatingStar from "@/components/RatingStars";
 
 export default async function page() {
   // need to get product id from url
@@ -53,7 +54,7 @@ export default async function page() {
           </CardHeader>
           <CardContent>
             <CardDescription>
-              <RatingStar />
+              <RatingStar rate={4} />
               <p>بناءً على 8179 تقييمات</p>
             </CardDescription>
           </CardContent>
@@ -111,17 +112,5 @@ function UserComment() {
         </CardDescription>
       </div>
     </CardContent>
-  );
-}
-
-function RatingStar() {
-  return (
-    <div className="flex gap-1">
-      <HiStar className="size-6 transition-colors text-amber-500" />
-      <HiStar className="size-6 transition-colors text-amber-500" />
-      <HiStar className="size-6 transition-colors text-amber-500" />
-      <HiStar className="size-6 transition-colors text-amber-500" />
-      <HiStar className="size-6 transition-colors text-neutral-300" />
-    </div>
   );
 }
