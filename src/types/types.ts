@@ -43,21 +43,19 @@ export interface ProductType {
 
 
 export interface StoreType {
-  
+  _id:string;
   name:string
   storeImage:string;
   storeCoverImage:string;
-  rating:number;
-  
   location:{
-    country:number
+    country:string
     address:string
   };
   
   owner:{
     _id:number // => Id of the owner
-    photo:string // => Profile image of the owner
-    name:string // => Name of the owner
+    profileImage:string // => Profile image of the owner
+    userName:string // => Name of the owner
   }
   
   contact:{
