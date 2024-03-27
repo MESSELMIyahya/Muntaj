@@ -3,13 +3,16 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: 'media.ouedkniss.com',
+        hostname: "media.ouedkniss.com",
       },
       {
-        hostname: 'm.media-amazon.com',
+        hostname: "m.media-amazon.com",
       },
       {
-        hostname: 'encrypted-tbn0.gstatic.com',
+        hostname: "encrypted-tbn0.gstatic.com",
+      },
+      {
+        hostname: "github.com",
       },
     ],
   },
