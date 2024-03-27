@@ -11,75 +11,86 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import CategoryName from '@/components/CategoryName';
+import GetCountryName from '@/lib/country';
+import CountryFlag from '@/components/CountryFlag';
+import SectionPart from '@/components/SectionPart';
+import PageSection from '@/components/PageSection';
+import { getProduct } from '@/lib/products';
 const imgURL =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0LgIPwB4gjYlOy5_YtiC7GSU5VJQVBgwG2w&s';
 
-export default function page() {
-  return (
-    <div className="mt-16 max-w-6xl m-auto space-y-10">
-      <Card className="grid gap-8 grid-cols-3">
-        <CardHeader className="col-span-1 bg-yellow-200">
-          <Image src={imgURL} width={800} height={800} alt="product" />
-        </CardHeader>
-
-        <CardContent className="col-span-2 space-y-4 mt-4">
-          <ProductContent />
-        </CardContent>
-      </Card>
-
-      <Card className="grid grid-cols-3 p-2 gap-2">
-        <Card className="col-span-1 space-y-2">
-          <CardHeader>
-            <h2 className="text-2xl font-semibold">التقييم العام</h2>
-            <h3 className="text-xl font-semibold">4</h3>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>
-              <RatingStar />
-              <p>بناءً على 8179 تقييمات</p>
-            </CardDescription>
-          </CardContent>
-        </Card>
-
-        <Card className="col-span-2">
-          <CardHeader>
-            <h2 className="text-2xl">اراء المستخدمين</h2>
-          </CardHeader>
-          <UserComment />
-          <UserComment />
-          <UserComment />
-          <UserComment />
-        </Card>
-      </Card>
-    </div>
-  );
+interface PropsType {
+  params: {
+    id: string;
+  }
 }
 
-function ProductContent() {
+export default async function ProductPage({ params }: PropsType) {
+  const prod = await getProduct(params.id);
+
+
   return (
-    <>
-      <Badge>الكترونيات</Badge>
-      <h1 className="text-2xl">
-        وحدة تحكم بلاي ستيشن 5 (إصدار القرص) مع وحدة التحكم
-      </h1>
-      <p className="text-lg">
-        منتج يتميز بسرعة عالية - استغل قوة وحدة المعالجة المركزية المخصصة وبطاقة
-        الرسومات ومحرك الأقراص SSD مع وحدات الإدخال والإخراج المدمجة التي تعمل
-        على إعادة كتابة القواعد التي يمكن لجهاز الألعاب بلايستيشن فعلها. ألعاب
-        مذهلة - استمتع برسومات مذهلة واستمتع بتجربة ميزات PS5 الجديدة. انغماس
-        مذهل - اكتشف تجربة ألعاب أعمق مع دعم التغذية الراجعة اللمسية والمحفزات
-        التكيفية وتقنية الصوت ثلاثية الأبعاد. استمتع بلعب سلس ومرن وذي معدل
-        إطارات عالٍ يصل إلى 120 إطار في الثانية للألعاب المتوافقة. بفضل تقنية
-        HDR tv،
-      </p>
-      <div className="flex items-center gap-6">
-        <Button className="w-full">تواصل</Button>
-        <Button variant="outline" size="icon">
-          <HiStar className="size-6 transition-colors text-neutral-300" />
-        </Button>
-      </div>
-    </>
-  );
+    <PageSection>
+      <SectionPart>
+        <Card className="flex justify-between gap-3 flex-col md:flex-row">
+          <CardHeader className="w-full md:w-2/6 border-b md:border-b-none md:border-l">
+            <Image src={prod.primaryImage} width={800} height={800} alt="product" />
+          </CardHeader>
+
+          <CardContent className="flex-1 flex flex-col gap-6 py-3">
+
+            <div className="w-full flex items-center gap-2">
+              <Badge className="flex items-center gap-1 rounded-sm text-sm ">
+                <CategoryName ID={prod.category} />
+              </Badge>
+
+              <Badge variant="outline" className="flex text-sm items-center gap-1 rounded-sm">
+                {GetCountryName(prod.country)}
+                <CountryFlag country={prod.country} className="w-4" />
+              </Badge>
+            </div>
+
+            <h1 className="w-full text-2xl text-secondary-foreground font-semibold">{prod.name}</h1>
+            <p className="w-full flex-1 text-lg">{prod.description}</p>
+            <div className="flex items-center gap-4">
+              <Button className="flex-1">تواصل</Button>
+              <Button variant="outline" size="icon">
+                <HiStar className="size-6 transition-colors text-neutral-300" />
+              </Button>
+            </div>
+
+          </CardContent>
+        </Card>
+      </SectionPart>
+
+      <SectionPart>
+        <Card className="grid grid-cols-1 md:grid-cols-3 p-2 gap-2">
+          <Card className="col-span-1 space-y-2">
+            <CardHeader>
+              <h2 className="text-2xl font-semibold">التقييم العام</h2>
+              <h3 className="text-xl font-semibold">{prod.rating}</h3>
+            </CardHeader>
+            <CardContent>
+              <div>
+                <RatingStar />
+                <p>بناءً على 8179 تقييمات</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="w-full md:col-span-2">
+            <CardHeader>
+              <h2 className="text-2xl">اراء المستخدمين</h2>
+            </CardHeader>
+            <UserComment />
+            <UserComment />
+            <UserComment />
+            <UserComment />
+          </Card>
+        </Card>
+      </SectionPart>
+    </PageSection>);
 }
 
 function UserComment() {
@@ -101,7 +112,7 @@ function UserComment() {
 
 function RatingStar() {
   return (
-    <div className="flex gap-1">
+    <div className="flex items-center gap-1">
       <HiStar className="size-6 transition-colors text-amber-500" />
       <HiStar className="size-6 transition-colors text-amber-500" />
       <HiStar className="size-6 transition-colors text-amber-500" />
