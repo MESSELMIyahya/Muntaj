@@ -84,7 +84,7 @@ export default async function page() {
         <CardHeader className="text-2xl font-semibold text-center">
           المنتجات
         </CardHeader>
-        <CardContent className="flex gap-4">
+        <CardContent className="flex gap-4 flex-col md:flex-row">
           {products &&
             products.map((e) => (
               <ProductCard
