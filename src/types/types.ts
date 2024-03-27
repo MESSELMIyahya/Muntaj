@@ -45,6 +45,7 @@ export interface ProductType {
 export interface StoreType {
   _id:string;
   name:string
+  description:string;
   storeImage:string;
   storeCoverImage:string;
   location:{
