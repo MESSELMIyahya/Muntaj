@@ -1,4 +1,3 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
@@ -11,6 +10,7 @@ import Image from "next/image";
 import getProducts from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
 import RatingStar from "@/components/RatingStars";
+import UserComment from "@/components/UserComment";
 
 export default async function page() {
   const products = await getProducts();
@@ -64,7 +64,8 @@ export default async function page() {
           <CardHeader className="text-2xl font-semibold">
             اراء العملاء
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
+            <UserComment />
             <UserComment />
             <UserComment />
             <UserComment />
@@ -102,22 +103,5 @@ export default async function page() {
         </CardContent>
       </Card>
     </div>
-  );
-}
-
-function UserComment() {
-  return (
-    <CardContent className="flex gap-4 items-center">
-      <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-      <div>
-        <CardTitle className="text-xl">محمد عادل</CardTitle>
-        <CardDescription>
-          المنتج في غاية الروعة, استخدامه سهل وجودة الخامات عالية
-        </CardDescription>
-      </div>
-    </CardContent>
   );
 }

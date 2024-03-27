@@ -2,16 +2,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { HiStar } from "react-icons/hi";
 import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { getProduct } from "@/lib/products";
 import RatingStar from "@/components/RatingStars";
+import UserComment from "@/components/UserComment";
 
 export default async function page() {
   // need to get product id from url
@@ -64,10 +63,12 @@ export default async function page() {
           <CardHeader>
             <h2 className="text-2xl">اراء المستخدمين</h2>
           </CardHeader>
-          <UserComment />
-          <UserComment />
-          <UserComment />
-          <UserComment />
+          <CardContent className="space-y-4">
+            <UserComment />
+            <UserComment />
+            <UserComment />
+            <UserComment />
+          </CardContent>
         </Card>
       </Card>
     </div>
@@ -95,22 +96,5 @@ function ProductContent({
         </Button>
       </div>
     </>
-  );
-}
-
-function UserComment() {
-  return (
-    <CardContent className="flex gap-4 items-center">
-      <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-      <div>
-        <CardTitle className="text-xl">محمد عادل</CardTitle>
-        <CardDescription>
-          المنتج في غاية الروعة, استخدامه سهل وجودة الخامات عالية
-        </CardDescription>
-      </div>
-    </CardContent>
   );
 }
