@@ -4,7 +4,12 @@ export interface UserDataType {
     email:string;
     pic:string;
     username:string;
-    id:string;    
+    id:string;
+    store:{
+        image:string;
+        name:string;
+        id:string;
+    }|null
     role:'admin'|'user'
 }
 
