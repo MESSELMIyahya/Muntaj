@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 
 import AuthProvider from '@/auth';
 import Navbar from '@/components/Navbar';
+import AlertProvider from '@/providers/alertProvider';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -28,9 +29,11 @@ export default async function RootLayout({
         )}
       >
         <AuthProvider>
-          {/* @ts-expect-error */}
-        <Navbar />
-          {children}
+          <AlertProvider>
+            {/* @ts-expect-error */}
+            <Navbar />
+            {children}
+          </AlertProvider>
         </AuthProvider>
       </body>
     </html>
