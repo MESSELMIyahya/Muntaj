@@ -3,7 +3,7 @@ import { ProductType } from "@/types/types";
 const testImg = 'https://m.media-amazon.com/images/I/51-TFGHQE2L._AC_SX569_.jpg';
 
 
-const testProds : ProductType[] = [
+export const testProds : ProductType[] = [
     {   
         _id:'f093hf93fh0',
         category:'ct4',
