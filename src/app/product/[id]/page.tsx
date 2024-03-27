@@ -32,7 +32,7 @@ export default async function page() {
       <Card className="grid gap-8 grid-cols-1 md:grid-cols-3">
         <CardHeader className="col-span-1">
           <Image
-            className="m-auto md:m-0 bg-red-200 max-w-80 md:max-w-full"
+            className="m-auto md:m-0 max-w-80 md:max-w-full"
             src={product.primaryImage}
             width={800}
             height={800}
@@ -51,9 +51,7 @@ export default async function page() {
       <Card className="grid grid-cols-1 md:grid-cols-3 p-2 gap-2">
         <Card className="col-span-1 space-y-2">
           <CardHeader>
-            <h2 className="text-2xl font-semibold  bg-red-500 md:bg-green-500">
-              التقييم العام
-            </h2>
+            <h2 className="text-2xl font-semibold ">التقييم العام</h2>
             <h3 className="text-xl font-semibold">4</h3>
           </CardHeader>
           <CardContent>
