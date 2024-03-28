@@ -49,7 +49,7 @@ export default function NavbarUserMenu() {
                     {
                         user?.store ?
                             <DropdownMenuItem asChild className="group flex items-center py-1 justify-between bg-accent font-medium">
-                                <Link href='dashboard'>
+                                <Link href='/dashboard'>
 
                                     <div className="flex items-center gap-2">
                                         <Avatar className="w-7 h-7">

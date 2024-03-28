@@ -1,4 +1,4 @@
-import useAlert from "@/auth/hooks/useAlert";
+import useAlert from "@/hooks/useAlert";
 import useAuth from "@/auth/hooks/useAuth";
 import CountryFlag from "@/components/CountryFlag";
 import LoadingIcon from "@/components/LoadingIcon";
