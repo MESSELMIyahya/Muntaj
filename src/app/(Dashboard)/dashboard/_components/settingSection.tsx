@@ -1,6 +1,6 @@
 'use client'
 
-import useAlert from "@/auth/hooks/useAlert";
+import useAlert from "@/hooks/useAlert";
 import LoadingIcon from "@/components/LoadingIcon";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
