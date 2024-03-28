@@ -7,6 +7,7 @@ import NavbarUserMenu from './components/userMenu';
 import Image from 'next/image';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import { HiMenu } from 'react-icons/hi'
+import SearchBar from './components/searchBar';
 
 const Texts = MainText.components.header
 
@@ -26,9 +27,7 @@ export default async function Navbar() {
             </Link>
 
 
-            <div className='w-3/6 relative'>
-                <Input className='w-full py-2 px-3 rounded-full' placeholder={Texts.searchBar.placeholder} />
-            </div>
+            <SearchBar/>
 
             {
                 isAuthenticated ?
