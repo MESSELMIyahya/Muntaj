@@ -63,9 +63,6 @@ interface Props {
 }
 
 export default function UserCreateStoreDialog({ setToggle, toggle }: Props) {
-  const {
-    data: { user },
-  } = useAuth();
   const { updateData } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const [uploadErr, setUploadErr] = useState("");
@@ -73,6 +70,7 @@ export default function UserCreateStoreDialog({ setToggle, toggle }: Props) {
   // form stuff
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateStoreType>({
@@ -164,6 +162,13 @@ export default function UserCreateStoreDialog({ setToggle, toggle }: Props) {
         title:'تم إنشاء متجرك بنجاح 🎉',
         des:'الان قم بانشاء منتجاتك وعرضها للمستثمرين'
       })
+      reset();
+      setProfileImageFile(null);
+      setCoverImageFile(null)
+      setCoverImageUrl('')
+      setCountry('');
+      setProfileImageUrl('')
+      setToggle(false);
       updateData({});
     } catch (err) {
       setUploadErr('حدث شيئ غير متوقع حاول مرة اخر')
@@ -280,7 +285,7 @@ export default function UserCreateStoreDialog({ setToggle, toggle }: Props) {
                       <SelectContent dir="rtl">
                         {
                           ArabCountries.map(e =>
-                            <SelectItem value={e}>
+                            <SelectItem key={e} value={e}>
                               <div className="flex items-center gap-2">
                                 <CountryFlag country={e} className="w-4" />
                                 {GetCountryName(e)}
