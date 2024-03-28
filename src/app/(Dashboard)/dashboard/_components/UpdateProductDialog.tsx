@@ -1,5 +1,5 @@
 
-import useAlert from "@/auth/hooks/useAlert";
+import useAlert from "@/hooks/useAlert";
 import CategoryIcon from "@/components/CategoryIcon";
 import CategoryName from "@/components/CategoryName";
 import LoadingIcon from "@/components/LoadingIcon";
