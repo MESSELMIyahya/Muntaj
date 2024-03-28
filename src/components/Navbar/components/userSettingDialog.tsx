@@ -60,6 +60,7 @@ export default function UserSettingDialog({ setToggle, toggle }: Props) {
             if(imageFile) body.append('profileImage', imageFile);
             if(userName) body.append('userName', userName)
             await updateData(body as never);
+            setToggle(false)
         } catch (err) {
             console.log('something  went wrong', err);
         }
