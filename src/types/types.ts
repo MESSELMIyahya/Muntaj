@@ -12,7 +12,19 @@ export interface ProductType {
     country: string; // => The number of the country
     photo: string; // => URl of owner's profile photo
     name: string; // => Store's name
-    rating: number;
+    contact: {
+      phoneNumbers: string[];
+      email: string;
+      website?: string; // => this is optional
+      socialMedia: {
+        // all of the sm account are optional
+        facebook?: string;
+        instagram?: string;
+        linkedIn?: string;
+        twitter?: string;
+        youtube?: string;
+      };
+    };
   };
   rating?: number; // => from 1  to  5
 
