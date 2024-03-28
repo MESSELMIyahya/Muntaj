@@ -2,24 +2,21 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { HiStar } from "react-icons/hi";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card";
-import { getProduct } from "@/lib/products";
-import RatingStar from "@/components/RatingStars";
-import UserComment from "@/components/UserComment";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import PageSection from "@/components/PageSection";
 import SectionPart from "@/components/SectionPart";
 import CategoryName from "@/components/CategoryName";
 import GetCountryName from "@/lib/country";
 import CountryFlag from "@/components/CountryFlag";
+import getProducts, { getProduct } from "@/lib/products";
+import getStore from "@/lib/store";
+import ProductCard from "@/components/ProductCard";
 
 export default async function page() {
+  const products = await getProducts();
   // need to get product id from url
   const product = await getProduct("ss");
+  const store = await getStore("dd");
 
   if (!product) {
     return (
@@ -32,7 +29,6 @@ export default async function page() {
   return (
     <PageSection>
       <SectionPart>
-
         <Card className="grid gap-8 grid-cols-1 md:grid-cols-3">
           <CardHeader className="col-span-1">
             <Image
@@ -52,41 +48,54 @@ export default async function page() {
             />
           </CardContent>
         </Card>
-
       </SectionPart>
 
       <SectionPart>
+        <Card>
+          <CardHeader className="text-2xl font-semibold">عن البائع</CardHeader>
+          <CardContent className="flex gap-8 ">
+            <div className="w-[75px] md:w-[100px]">
+              <Image
+                src={store.storeImage}
+                width={500}
+                height={500}
+                alt="store profile"
+                className="rounded-full overflow-hidden aspect-square"
+              />
+            </div>
+            {/* </div> */}
 
-
-        <Card className="grid grid-cols-1 md:grid-cols-3 p-2 gap-2">
-          <Card className="col-span-1 space-y-2">
-            <CardHeader>
-              <h2 className="text-2xl font-semibold ">التقييم العام</h2>
-              <h3 className="text-xl font-semibold">4</h3>
-            </CardHeader>
-            <CardContent>
-              <div>
-                <RatingStar rate={4} />
-                <p>بناءً على 8179 تقييمات</p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="col-span-2">
-            <CardHeader>
-              <h2 className="text-2xl">اراء المستخدمين</h2>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <UserComment />
-              <UserComment />
-              <UserComment />
-              <UserComment />
-            </CardContent>
-          </Card>
+            <div className="col-spans-4">
+              <h2 className="text-xl font-semibold">{store.name}</h2>
+              <p>{store.description}</p>
+            </div>
+          </CardContent>
         </Card>
-
       </SectionPart>
-
+      <SectionPart>
+        <Card>
+          <CardHeader className="text-2xl font-semibold text-center">
+            منتجات ممثلة
+          </CardHeader>
+          <CardContent className="flex gap-4 flex-col md:flex-row">
+            {products &&
+              products.map((e) => (
+                <ProductCard
+                  key={e._id}
+                  category={e.category}
+                  country={e.country}
+                  description={e.description}
+                  title={e.name}
+                  image={e.primaryImage}
+                  rated={false}
+                  id={e._id}
+                  rating={e.rating || 0}
+                  store={{ name: e.store.name, id: e._id }}
+                />
+              ))}
+          </CardContent>
+        </Card>
+      </SectionPart>
     </PageSection>
   );
 }
@@ -94,9 +103,9 @@ export default async function page() {
 function ProductContent({
   category,
   description,
-  country
+  country,
 }: {
-  country:string;
+  country: string;
   category: string;
   description: string;
 }) {
@@ -107,9 +116,12 @@ function ProductContent({
           <CategoryName ID={category} />
         </Badge>
 
-        <Badge variant="outline" className="flex text-md items-center gap-1 rounded-sm">
+        <Badge
+          variant="outline"
+          className="flex text-md items-center gap-1 rounded-sm"
+        >
           {GetCountryName(country)}
-          <CountryFlag country={country} className="w-5"/>
+          <CountryFlag country={country} className="w-5" />
         </Badge>
       </div>
       <h1 className="text-2xl">
@@ -125,4 +137,3 @@ function ProductContent({
     </>
   );
 }
-
