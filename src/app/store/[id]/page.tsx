@@ -54,26 +54,26 @@ export default async function page() {
         </Card>
 
         <Card className="col-span-2 flex flex-col px-3 py-3">
-          <table>
-            <tr className="border">
-              <th className="text-lg font-semibold text-start px-1">
+          <div className="space-y-2">
+            <div className="border rounded-sm p-1 grid grid-cols-2 items-center">
+              <h2 className="text-lg font-semibold text-start px-1">
                 رقم الهاتف
-              </th>
-              <td>{store.contact.phoneNumbers[0]}</td>
-            </tr>
-            <tr className="border">
-              <th className="text-lg font-semibold text-start px-1">
+              </h2>
+              <p>{store.contact.phoneNumbers[0]}</p>
+            </div>
+            <div className="border rounded-sm p-1 grid grid-cols-2 items-center">
+              <h2 className="text-lg font-semibold text-start px-1">
                 البريد الالكتروني
-              </th>
-              <td>{store.contact.email}</td>
-            </tr>
-            <tr className="border">
-              <th className="text-lg font-semibold text-start px-1">
+              </h2>
+              <p>{store.contact.email}</p>
+            </div>
+            <div className="border rounded-sm p-1 grid grid-cols-2 items-center">
+              <h2 className="text-lg font-semibold text-start px-1">
                 الموقع الالكتروني
-              </th>
-              <td>{store.contact.website}</td>
-            </tr>
-          </table>
+              </h2>
+              <p>{store.contact.website}</p>
+            </div>
+          </div>
           <div className="flex gap-4 items-center justify-center mt-4">
             <Button>
               <LuFacebook size={25} />
