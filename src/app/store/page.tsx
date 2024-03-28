@@ -37,7 +37,15 @@ export default async function page() {
         </div>
       </Card>
 
-      <div className="grid md:grid-cols-4 md:grid-rows-2 gap-8 pt-8">
+      <div className="grid md:grid-cols-4 gap-8 pt-8">
+        <Card className="col-span-2">
+          <CardHeader className="text-2xl font-semibold">حول المتجر</CardHeader>
+          <CardContent>
+            <CardTitle>{store.name}</CardTitle>
+            <CardDescription>{store.description}</CardDescription>
+          </CardContent>
+        </Card>
+
         <Card className="col-span-1 flex flex-col justify-center items-center">
           <CardHeader className="text-2xl font-semibold">
             تقييم المتجر
@@ -60,7 +68,7 @@ export default async function page() {
             </CardDescription>
           </CardContent>
         </Card>
-        <Card className="col-span-2 row-span-2">
+        {/* <Card className="col-span-2 row-span-2">
           <CardHeader className="text-2xl font-semibold">
             اراء العملاء
           </CardHeader>
@@ -70,14 +78,7 @@ export default async function page() {
             <UserComment />
             <UserComment />
           </CardContent>
-        </Card>
-        <Card className="col-span-2">
-          <CardHeader className="text-2xl font-semibold">حول المتجر</CardHeader>
-          <CardContent>
-            <CardTitle>{store.name}</CardTitle>
-            <CardDescription>{store.description}</CardDescription>
-          </CardContent>
-        </Card>
+        </Card> */}
       </div>
 
       <Card>
