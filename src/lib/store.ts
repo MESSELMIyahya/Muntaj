@@ -8,7 +8,8 @@ const testStore: StoreType[] = [
   {
     _id: "5455sfd5ss",
     name: "TechDz",
-    description: "hello there",
+    description:
+      "قة حجم الشاشة: 2.08nch 390 * 435-TFT مستوى مقاوم للماء: IP67 APP: WearFit pro متطلبات النظام: android5.0 + / ios10.0 + الشريحة الرئيسية: ذاكرة HS6621-PG: هاتف بلوتوث 128 ميجابايت",
     storeImage: testImg,
     storeCoverImage: ImageAdURL,
     rating: 5,

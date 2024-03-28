@@ -3,14 +3,20 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import getStore from "@/lib/store";
 import Image from "next/image";
 import getProducts from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
-import RatingStar from "@/components/RatingStars";
-import UserComment from "@/components/UserComment";
+import {
+  LuFacebook,
+  LuInstagram,
+  LuLinkedin,
+  LuTwitter,
+  LuYoutube,
+} from "react-icons/lu";
+import { Button } from "@/components/ui/button";
+// import UserComment from "@/components/UserComment";
 
 export default async function page() {
   const products = await getProducts();
@@ -39,46 +45,53 @@ export default async function page() {
 
       <div className="grid md:grid-cols-4 gap-8 pt-8">
         <Card className="col-span-2">
-          <CardHeader className="text-2xl font-semibold">حول المتجر</CardHeader>
+          <CardHeader className="text-3xl font-semibold">
+            {store.name}
+          </CardHeader>
           <CardContent>
-            <CardTitle>{store.name}</CardTitle>
             <CardDescription>{store.description}</CardDescription>
           </CardContent>
         </Card>
 
-        <Card className="col-span-1 flex flex-col justify-center items-center">
-          <CardHeader className="text-2xl font-semibold">
-            تقييم المتجر
-          </CardHeader>
-          <CardContent className="flex gap-4">
-            <CardTitle>5</CardTitle>
-            <CardDescription>
-              <RatingStar rate={5} />
-            </CardDescription>
-          </CardContent>
+        <Card className="col-span-2 flex flex-col px-3 py-3">
+          <table>
+            <tr className="border">
+              <th className="text-lg font-semibold text-start px-1">
+                رقم الهاتف
+              </th>
+              <td>{store.contact.phoneNumbers[0]}</td>
+            </tr>
+            <tr className="border">
+              <th className="text-lg font-semibold text-start px-1">
+                البريد الالكتروني
+              </th>
+              <td>{store.contact.email}</td>
+            </tr>
+            <tr className="border">
+              <th className="text-lg font-semibold text-start px-1">
+                الموقع الالكتروني
+              </th>
+              <td>{store.contact.website}</td>
+            </tr>
+          </table>
+          <div className="flex gap-4 items-center justify-center mt-4">
+            <Button>
+              <LuFacebook size={25} />
+            </Button>
+            <Button>
+              <LuLinkedin size={25} />
+            </Button>
+            <Button>
+              <LuInstagram size={25} />
+            </Button>
+            <Button>
+              <LuTwitter size={25} />
+            </Button>
+            <Button>
+              <LuYoutube size={25} />
+            </Button>
+          </div>
         </Card>
-        <Card className="col-span-1 flex flex-col justify-center items-center">
-          <CardHeader className="text-2xl font-semibold">
-            تقييم العملاء
-          </CardHeader>
-          <CardContent className="flex gap-4">
-            <CardTitle>4</CardTitle>
-            <CardDescription>
-              <RatingStar rate={4} />
-            </CardDescription>
-          </CardContent>
-        </Card>
-        {/* <Card className="col-span-2 row-span-2">
-          <CardHeader className="text-2xl font-semibold">
-            اراء العملاء
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <UserComment />
-            <UserComment />
-            <UserComment />
-            <UserComment />
-          </CardContent>
-        </Card> */}
       </div>
 
       <Card>
