@@ -63,6 +63,7 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
             }
             setIsLoading(false)
         })()
+        refresh()
     }, []);
 
 
