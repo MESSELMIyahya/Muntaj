@@ -1,22 +1,24 @@
-import getServerAuth from '@/auth/server';
+'use client';
+// import getServerAuth from '@/auth/server';
 import MainText from '@/langs/AR/main.json';
 import Link from 'next/link';
 import { Button } from '../ui/button';
-import { Input } from '../ui/input';
 import NavbarUserMenu from './components/userMenu';
 import Image from 'next/image';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import { HiMenu } from 'react-icons/hi'
+import SearchBar from './components/searchBar';
+import useAuth from '@/auth/hooks/useAuth';
 
 const Texts = MainText.components.header
 
 
 
-export default async function Navbar() {
-    const { isAuthenticated } = await getServerAuth();
+export default function Navbar() {
+    const { isAuthenticated } =  useAuth();
 
 
-    return (<><header className="w-full fixed top-0 left-0 bg-card border-b shadow-sm">
+    return (<><header className="w-full fixed top-0 left-0 z-50 bg-card border-b shadow-sm">
 
         <div className="container w-full flex items-center justify-between py-3">
 
@@ -26,9 +28,7 @@ export default async function Navbar() {
             </Link>
 
 
-            <div className='w-3/6 relative'>
-                <Input className='w-full py-2 px-3 rounded-full' placeholder={Texts.searchBar.placeholder} />
-            </div>
+            <SearchBar/>
 
             {
                 isAuthenticated ?
@@ -73,8 +73,8 @@ export default async function Navbar() {
 
                                     <DropdownMenuItem >
                                         <Button asChild className='w-full'>
-                                            <Link href="/login">
-                                                {Texts.login}
+                                            <Link href="/register">
+                                                {Texts.register}
                                             </Link>
                                         </Button>
                                     </DropdownMenuItem>
@@ -90,6 +90,6 @@ export default async function Navbar() {
 
     </header>
 
-        <div className="w-full py-10 " />
+        <div className="w-full py-4 lg:py-2 " />
     </>)
 }
