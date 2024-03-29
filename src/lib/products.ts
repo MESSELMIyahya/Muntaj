@@ -1,40 +1,63 @@
 import { ProductType } from "@/types/types";
-
-const testImg =
-  "https://m.media-amazon.com/images/I/51-TFGHQE2L._AC_SX569_.jpg";
+import AxiosReq from "./axios";
 
 
-export const testProds : ProductType[] = [
-    {   
-        _id:'f093hf93fh0',
-        category:'ct4',
-        country:'eg',
-        images:[testImg,testImg,testImg,testImg],
-        primaryImage:testImg,
-        description:'ساعة ذكية احترافية مصنعة ومنتجة في مصر تحتوي على الكثير من المزايا',
-        store:{
-            country:'dz',
-            _id:'092hf903fh',
-            name:"TechDz",
-            photo:testImg,
-            rating:5
-        },
-        name:"ساعة ذكية واحترافية  مصنعة في مصر",
-        videoURL:'',
-        rating:100,
-        colors:[],
-        comments:[]
-    }   
-]
+
+const IsEven =(n:number)=> n % 3 == 0 ;
 
 
-async function getProducts(n:number=10) : Promise<ProductType[]> {
-    return [...testProds,...testProds,...testProds]
+
+async function getProducts() : Promise<ProductType[]|null> {
+    try{
+      const res = await AxiosReq.get('/api/v1/product')
+      const prods : ProductType[] = res.data.data; 
+      return prods
+    }catch(err){
+      console.log(err);
+      return null ;
+    }
 }
 
-async function getProduct(id: string): Promise<ProductType> {
-  return testProds[0];
+async function getProductsBySearch(keywords:string) : Promise<ProductType[]|null> {
+  try{
+    const res = await AxiosReq.get('/api/v1/product?product='+keywords)
+    const prods : ProductType[] = res.data.data; 
+    return prods
+  }catch(err){
+    console.log(err);
+    return null ;
+  }
 }
 
-export default getProducts;
-export { getProduct };
+async function getProductsByCategory(id:string,limit:number=50) : Promise<ProductType[]|null> {
+  try{
+    const res = await AxiosReq.get('/api/v1/product'+'?category='+id+'&limit='+limit);
+    const prods : ProductType[] = res.data.data; 
+    return prods
+  }catch(err){
+    console.log(err);
+    return null ;
+  }
+}
+
+async function getProductsLimit(num:number=20) : Promise<ProductType[]|null> {
+  try{
+    const res = await AxiosReq.get('/api/v1/product'+'?limit='+num);
+    return res.data.data;
+  }catch(err){
+    console.log(err);
+    return null ;
+  }
+}
+
+async function getProduct(id: string): Promise<ProductType|null> {
+  try{
+    const res = await AxiosReq.get('/api/v1/product/'+id)
+    return res.data.data;
+  }catch(err){
+    console.log(err);
+    return null ;
+  }
+}
+
+export { getProduct,getProductsBySearch , getProductsLimit , getProducts , getProductsByCategory };
