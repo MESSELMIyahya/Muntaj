@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 
 export default async function DashboardPage (){
-    const { isAuthenticated,data:{user} } = await useAuth();
+    const { isAuthenticated,data:{user} } = useAuth();
     const { replace } = useRouter()
 
     useEffect(()=>{
