@@ -1,18 +1,24 @@
-import getServerAuth from "@/auth/server";
+'use client';
+// import getServerAuth from "@/auth/server";
 import PageSection from "@/components/PageSection";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import TabsSection from "./_components/TabsSection";
+import useAuth from "@/auth/hooks/useAuth";
+import { useEffect } from "react";
 
 
 
 export default async function DashboardPage (){
-    const { isAuthenticated,user } = await getServerAuth();
+    const { isAuthenticated,data:{user} } = await useAuth();
+    const { replace } = useRouter()
 
-    // see if the user is authed and has a store    
+    useEffect(()=>{
+        // see if the user is authed and has a store    
+        if(!isAuthenticated||!user?.store){
+            replace('/');
+        }
+    },[user])
 
-    if(!isAuthenticated||!user?.store){
-        return redirect('/');
-    }
 
     return (<PageSection>
         
