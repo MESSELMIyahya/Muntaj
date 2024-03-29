@@ -5,11 +5,12 @@ import AxiosReq from "./axios";
 
 const IsEven =(n:number)=> n % 3 == 0 ;
 
-
+const baseURL = 'https://muntaj-server.onrender.com';
+// const baseURL = 'http://localhost:5000';
 
 async function getProducts() : Promise<ProductType[]|null> {
     try{
-      const res = await fetch('/api/v1/product',{cache:"no-store"})
+      const res = await fetch(baseURL+'/api/v1/product',{cache:"no-store"})
       const prods : ProductType[] = (await res.json()).data; 
       return prods
     }catch(err){
