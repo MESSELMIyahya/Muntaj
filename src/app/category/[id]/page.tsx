@@ -1,14 +1,12 @@
-
-
-
 import CategoryItem from "@/components/CategoryItem";
 import LineAD from "@/components/LineAd";
 import PageSection from "@/components/PageSection";
 import ProductCard from "@/components/ProductCard";
 import SectionPart from "@/components/SectionPart";
 import { doesCategoryExists, getCategoryIcon, getCategoryNameById } from "@/lib/category";
-import getProducts from "@/lib/products";
-import { redirect } from "next/navigation";
+import {getProductsByCategory} from "@/lib/products";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface PropsType {
     params:{
@@ -16,7 +14,25 @@ interface PropsType {
     }
 }
 
-const ImageAdURL = 'https://media.ouedkniss.com/medias/images/EZAgm/UMHWDudx17WET5Yitn5p8r8yFaSRz1WMt1BWpEWc.jpg';
+// generating meta data
+
+export async function generateMetadata({params}:PropsType){
+    const id = decodeURIComponent(params.id) ;
+
+    const isValidCategory = doesCategoryExists(id);
+
+    if(!isValidCategory){
+        throw notFound()
+    }
+
+    const CategoryTitle = getCategoryNameById(id);
+  
+    return { 
+      title:"منتج - " + CategoryTitle,
+      description : 'منتجات  في ' + CategoryTitle
+    } as Metadata
+  }
+
 
 export default async function SearchPage ({params}:PropsType){
     const id = decodeURIComponent(params.id) ;
@@ -24,10 +40,14 @@ export default async function SearchPage ({params}:PropsType){
     const isValidCategory = doesCategoryExists(id);
 
     if(!isValidCategory){
-        redirect('/')
+        throw notFound()
     }
     
-    const ProductsBySearch = await getProducts();
+    const ProductsBySearch = await getProductsByCategory(id);
+
+    if(!ProductsBySearch){
+        throw notFound()
+    }
 
 
     const CategoryIcon = getCategoryIcon(id);
@@ -36,7 +56,7 @@ export default async function SearchPage ({params}:PropsType){
 
     return (<PageSection>
 
-        <SectionPart >
+        <SectionPart>
             <div className="flex items-center gap-3">
                 <CategoryItem size="sm" Icon={CategoryIcon}/>
                 <h2 className="text-lg md:text-3xl font-medium text-secondary-foreground ">{CategoryTitle}</h2>
@@ -44,11 +64,10 @@ export default async function SearchPage ({params}:PropsType){
         </SectionPart>
     
         <SectionPart>
-            <LineAD ImageSrc={ImageAdURL} owner="Yahya" />
+            <LineAD ImageSrc={'/lineAd2.jpg'} owner="@Muntaj" />
         </SectionPart>
 
-        <SectionPart className="columns-1 md:columns-2 lg:columns-3">
-
+        <SectionPart className="justify-center flex gap-2 flex-wrap">
         {
         ProductsBySearch && ProductsBySearch.map((e)=>
           <ProductCard
@@ -61,7 +80,7 @@ export default async function SearchPage ({params}:PropsType){
             rated={false}
             id={e._id}
             rating={e.rating ||  0}
-            store={{ name:e.store.name, id: e._id }}
+            store={{ name:e.store.name, contact:e.store.contact, id: e.store._id }}
           />
         )
     }
