@@ -9,8 +9,8 @@ const IsEven =(n:number)=> n % 3 == 0 ;
 
 async function getProducts() : Promise<ProductType[]|null> {
     try{
-      const res = await AxiosReq.get('/api/v1/product')
-      const prods : ProductType[] = res.data.data; 
+      const res = await fetch('/api/v1/product',{cache:"no-store"})
+      const prods : ProductType[] = (await res.json()).data; 
       return prods
     }catch(err){
       console.log(err);
