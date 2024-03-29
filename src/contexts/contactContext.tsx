@@ -1,40 +1,12 @@
 'use client';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import InfoItem from "@/components/InfoItem";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import Link from "next/link";
 import { createContext, useState } from "react";
 import { IconType } from "react-icons/lib";
-import { LuAtSign, LuCopy, LuExternalLink, LuGlobe, LuPhone } from "react-icons/lu";
-import { RiFacebookFill, RiInstagramFill, RiLinkedinFill, RiYoutubeFill } from 'react-icons/ri'
+import { LuAtSign, LuGlobe, LuPhone } from "react-icons/lu";
+import { RiFacebookFill, RiInstagramFill, RiLinkedinFill } from 'react-icons/ri'
 
-interface InfoItemProps {
-    type?: 'link' | 'copy'
-    text: string;
-    link?: string;
-    Icon: IconType;
-}
-
-const InfoItem = ({ type, Icon, link, text }: InfoItemProps) => {
-    const copyText = () => {
-        navigator.clipboard.writeText(text);
-    }
-
-    return (<div className="group relative flex justify-end items-center gap-3 p-2 px-3 rounded-md bg-primary/10">
-        <span className="text-base line-clamp-1 text-secondary-foreground">{text}</span>
-        <Icon className="size-5 text-primary" />
-        {
-            type ?
-                <span className="absolute hidden group-hover:block active:scale-95 right-2 cursor-pointer p-1 bg-primary/20 text-primary rounded-md">
-                    {type == 'copy' ?
-                        <LuCopy onClick={copyText} className="size-4" />
-                        : <Link href={link || '/'}>
-                            <LuExternalLink className="size-4" />
-                        </Link>
-                    }
-                </span> :
-                null
-        }
-    </div>);
-}
 
 interface MediaAccountType {
     Icon: IconType;
