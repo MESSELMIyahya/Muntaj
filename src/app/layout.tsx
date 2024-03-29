@@ -7,6 +7,7 @@ import AuthProvider from '@/auth';
 import Navbar from '@/components/Navbar';
 import AlertProvider from '@/providers/alertProvider';
 import ContactProvider from '@/providers/ContactProvider';
+import Footer from '@/components/Footer';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -14,8 +15,8 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: 'Muntaj',
-  description: 'Shear your products with your neighbors',
+  title: 'منتج - شارك منتجاتك مع جيرانك العرب',
+  description: `منتج هي منصة عربية تعرض المنتجات العربية المصنعة محلياً، بهدف تعزيز التعاون التجاري بين الدول العربية`,
 };
 
 export default async function RootLayout({
@@ -38,6 +39,7 @@ export default async function RootLayout({
             </ContactProvider>
           </AlertProvider>
         </AuthProvider>
+        <Footer/>
       </body>
     </html>
   );
