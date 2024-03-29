@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 
 
-export default async function DashboardPage (){
+export default function DashboardPage (){
     const { isAuthenticated,data:{user} } = useAuth();
     const { replace } = useRouter()
 
