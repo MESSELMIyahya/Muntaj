@@ -33,7 +33,7 @@ export default async function RootLayout({
         <AuthProvider>
           <AlertProvider>
             <ContactProvider>
-              {/* @ts-expect-error */}
+              {/* @ts-ignore */}
               <Navbar />
               {children}
             </ContactProvider>
