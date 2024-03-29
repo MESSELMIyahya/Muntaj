@@ -1,20 +1,21 @@
-import getServerAuth from '@/auth/server';
+'use client';
+// import getServerAuth from '@/auth/server';
 import MainText from '@/langs/AR/main.json';
 import Link from 'next/link';
 import { Button } from '../ui/button';
-import { Input } from '../ui/input';
 import NavbarUserMenu from './components/userMenu';
 import Image from 'next/image';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import { HiMenu } from 'react-icons/hi'
 import SearchBar from './components/searchBar';
+import useAuth from '@/auth/hooks/useAuth';
 
 const Texts = MainText.components.header
 
 
 
-export default async function Navbar() {
-    const { isAuthenticated } = await getServerAuth();
+export default function Navbar() {
+    const { isAuthenticated } =  useAuth();
 
 
     return (<><header className="w-full fixed top-0 left-0 z-50 bg-card border-b shadow-sm">
