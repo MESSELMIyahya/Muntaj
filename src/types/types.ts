@@ -9,8 +9,7 @@ export interface ProductType {
   _id: string;
   store: {
     _id: string; // => Id of the store
-    country: string; // => The number of the country
-    photo: string; // => URl of owner's profile photo
+    storeImage: string; // => URl of owner's profile photo
     name: string; // => Store's name
     contact: {
       phoneNumbers: string[];
@@ -79,6 +78,4 @@ export interface StoreType {
       youtube?: string;
     };
   };
-
-  productsIDs: string[];
 }
