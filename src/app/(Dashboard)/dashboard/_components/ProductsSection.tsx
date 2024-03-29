@@ -1,19 +1,14 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import ProductRowItem from "./ProductRowItem";
-import { testProds } from "@/lib/products";
 import { HiPlus } from "react-icons/hi";
-import { useMemo, useState } from "react";
 import CreateProductDialog from "./CreateProductDialog";
 import { ProductType } from "@/types/types";
 import UpdateProductDialog from "./UpdateProductDialog";
 import DeleteProductDialog from "./DeleteProductDialog";
-
-
-
-
+import { useState } from "react";
 
 
 const TableHeaderProduct = () => (
@@ -60,8 +55,8 @@ export default function ProductsSection({ products, refetch }: Props) {
     const [createProductToggle, setCreateProductToggle] = useState(false);
     const [updateProductToggle, setUpdateProductToggle] = useState(false);
     const [prodToUpdate, setProdToUpdate] = useState<ProductUpdateType | null>(null);
-    const [deleteProductToggle,setDeleteProductToggle] = useState(false)
-    const [idToDelete,setIdToDelete] = useState('');
+    const [deleteProductToggle, setDeleteProductToggle] = useState(false)
+    const [idToDelete, setIdToDelete] = useState('');
 
     const handleUpdateProd = (id: string) => {
         const prod = products.find(e => e._id == id)
@@ -70,16 +65,16 @@ export default function ProductsSection({ products, refetch }: Props) {
             return;
         }
         setProdToUpdate({
-            category:prod.category,
-            description:prod.description,
-            id:prod._id,
-            image:prod.primaryImage,
-            name:prod.name
+            category: prod.category,
+            description: prod.description,
+            id: prod._id,
+            image: prod.primaryImage,
+            name: prod.name
         });
         setUpdateProductToggle(true);
     };
 
-    const handleDeleteProd =  (id:string)=>{
+    const handleDeleteProd = (id: string) => {
         setIdToDelete(id);
         setDeleteProductToggle(true);
     }
@@ -128,15 +123,15 @@ export default function ProductsSection({ products, refetch }: Props) {
         {/* create product dialog */}
         <CreateProductDialog refetch={refetch} toggle={createProductToggle} setToggle={setCreateProductToggle} />
         {/* update product dialog */}
-        {
-            prodToUpdate ?  
-                <UpdateProductDialog   refetch={refetch} product={prodToUpdate}  toggle={updateProductToggle} setToggle={setUpdateProductToggle}  />
-            :null
+
+        {prodToUpdate ?
+            <UpdateProductDialog refetch={refetch} product={prodToUpdate as never} toggle={updateProductToggle} setToggle={setUpdateProductToggle} />
+            : null
         }
         {
-            idToDelete ?  
-                <DeleteProductDialog   refetch={refetch} id={idToDelete} toggle={deleteProductToggle} setToggle={setDeleteProductToggle}  />
-            :null
+            idToDelete ?
+                <DeleteProductDialog refetch={refetch} id={idToDelete} toggle={deleteProductToggle} setToggle={setDeleteProductToggle} />
+                : null
         }
     </>);
 }

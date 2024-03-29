@@ -1,4 +1,4 @@
-
+'use client';
 import useAlert from "@/hooks/useAlert";
 import CategoryIcon from "@/components/CategoryIcon";
 import CategoryName from "@/components/CategoryName";
@@ -26,7 +26,7 @@ import { Textarea } from "@/components/ui/textarea";
 import AxiosReq from "@/lib/axios";
 import { categoriesIds } from "@/lib/category";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 
@@ -65,15 +65,11 @@ export default function UpdateProductDialog({ product,setToggle,refetch, toggle 
     // form stuff
     const {
         register,
+        setValue,
         handleSubmit,
         formState: { errors },
     } = useForm<CreateStoreType>({
-        resolver: zodResolver(createStoreSchema),
-        defaultValues:product ?{
-            description:product?.description,
-            name:product?.name
-        } : undefined
-    });
+        resolver: zodResolver(createStoreSchema),});
     const [category, setCategory] = useState(product?product?.category:'ct1');
     const [categoryErr, setCategoryErr] = useState(false);
 
@@ -83,6 +79,18 @@ export default function UpdateProductDialog({ product,setToggle,refetch, toggle 
     const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
     const [profileImageURL, setProfileImageUrl] = useState(product?product?.image:'');
     const [imageErr, setImageErr] = useState("");
+
+    
+    // Old data to update 
+    useEffect(()=>{
+        if(product){
+            setValue('description',product.description);
+            setValue('name',product.name);
+            setProfileImageUrl(product.image);
+            setCategory(product.category);
+        }
+    },[product])
+
 
     // handle uploading images
     function updateLoadImage(files: File[] | null) {
@@ -111,7 +119,6 @@ export default function UpdateProductDialog({ product,setToggle,refetch, toggle 
         formData.append('description', data.description);
         profileImageFile && formData.append('primaryImage', profileImageFile);
         formData.append('category', category);
-
 
         try {
 
@@ -170,11 +177,6 @@ export default function UpdateProductDialog({ product,setToggle,refetch, toggle 
                                     style={{ backgroundImage: `url('${profileImageURL}')` }}
                                     htmlFor="profileImg"
                                     className="w-full md:w-[18em] h-[18em] flex rounded-xl cursor-pointer select-none justify-center items-center border-dashed bg-center bg-cover bg-no-repeat border-2 bg-primary/30 hover:opacity-90 transition-opacity border-primary/50">
-                                    {!profileImageFile ? (
-                                        <span className="text-xs font-medium text-primary/50">
-                                            إضافة صورة
-                                        </span>
-                                    ) : null}
                                 </label>
 
                                 {imageErr ? (
