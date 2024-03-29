@@ -20,7 +20,7 @@ async function getProducts() : Promise<ProductType[]|null> {
 
 async function getProductsBySearch(keywords:string) : Promise<ProductType[]|null> {
   try{
-    const res = await AxiosReq.get('/api/v1/product?product='+keywords)
+    const res = await AxiosReq.get('/api/v1/product?search='+keywords)
     const prods : ProductType[] = res.data.data; 
     return prods
   }catch(err){
