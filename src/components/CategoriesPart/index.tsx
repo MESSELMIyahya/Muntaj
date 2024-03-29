@@ -23,9 +23,9 @@ export default function CategoriesSection({ items }: Props) {
         <div className="w-full sm:w-4/3 md:w-2/3 flex justify-center gap-6 flex-wrap">
 
             {
-                items.map(e =>
+                items.map((e,i)=>
 
-                    <div className="max-w-fit flex flex-col gap-1 md:gap-2 items-center">
+                    <div key={i+'item'} className="max-w-fit flex flex-col gap-1 md:gap-2 items-center">
 
                         <Button asChild variant='ghost' className="w-fit h-fit p-0 rounded-full">
                             <Link href={e.link}>
