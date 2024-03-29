@@ -1,5 +1,4 @@
 'use server';
-import AxiosReq from "@/lib/axios";
 import { UserDataType } from "..";
 import { cookies } from "next/headers"
 
@@ -25,12 +24,15 @@ const getServerAuth :getServerAuthType = async ()=>{
             }
         };
         const cookieString = `${ac_to.name}=${ac_to.value}; ${re_to.name}=${re_to.value};`;
+        const baseURL = 'https://muntaj-server.onrender.com';
 
-        const res = await AxiosReq.get('auth/is-authenticated',{headers:{Cookie:cookieString}});
+        const res = await fetch(baseURL+'/auth/is-authenticated',{cache:"no-store",headers:{Cookie:cookieString}})
+        const databack = await res.json() 
+
         
-        if (res.status == 200 && res.data.authenticated && res.data.user) {
+        if (databack.authenticated && databack.user) {
             return {
-                user:res.data.user,
+                user:databack.user,
                 isAuthenticated:true
             }
         }else {
