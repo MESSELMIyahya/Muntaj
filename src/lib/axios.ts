@@ -1,10 +1,13 @@
 import axios , {CreateAxiosDefaults} from 'axios';
 
+interface aXType extends CreateAxiosDefaults  {
+    cache:string
+}
 
-
-const axiosConfig : CreateAxiosDefaults = {
+const axiosConfig : aXType = {
     withCredentials:true,
     baseURL:process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000',
+    cache: 'no-store',
 }
 
 const AxiosReq =  axios.create(axiosConfig);
