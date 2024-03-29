@@ -2,20 +2,39 @@ import LineAD from "@/components/LineAd";
 import PageSection from "@/components/PageSection";
 import ProductCard from "@/components/ProductCard";
 import SectionPart from "@/components/SectionPart";
-import getProducts from "@/lib/products";
+import { getProductsBySearch } from "@/lib/products";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-interface PropsType {
+interface Props {
     params:{
         keywords:string;
     }
 }
 
+
+// generating meta data
+
+export async function generateMetadata({params}:Props){
+    const searchText = decodeURIComponent(params.keywords) ;
+      
+    return { 
+      title:"منتج - " + searchText,
+      description : 'بحث عن ' + searchText 
+    } as Metadata
+}
+
+
 const ImageAdURL = 'https://media.ouedkniss.com/medias/images/EZAgm/UMHWDudx17WET5Yitn5p8r8yFaSRz1WMt1BWpEWc.jpg';
 
-export default async function SearchPage ({params}:PropsType){
+export default async function SearchPage ({params}:Props){
     const searchText = decodeURIComponent(params.keywords) ;
 
-    const ProductsBySearch = await getProducts();
+    const prods = await getProductsBySearch(searchText);
+
+    if(!prods){
+        throw notFound()
+    }
     
     return (<PageSection>
 
@@ -27,10 +46,10 @@ export default async function SearchPage ({params}:PropsType){
             <LineAD ImageSrc={ImageAdURL} owner="Yahya" />
         </SectionPart>
 
-        <SectionPart className="columns-1 md:columns-2 lg:columns-3">
+        <SectionPart className="justify-center flex gap-2 flex-wrap">
 
         {
-        ProductsBySearch && ProductsBySearch.map((e)=>
+        prods && prods.map((e)=>
           <ProductCard
             key={e._id}
             category={e.category}
@@ -41,7 +60,7 @@ export default async function SearchPage ({params}:PropsType){
             rated={false}
             id={e._id}
             rating={e.rating ||  0}
-            store={{ name:e.store.name, id: e._id }}
+            store={{ name:e.store.name,contact:e.store.contact, id: e._id }}
           />
         )
     }
