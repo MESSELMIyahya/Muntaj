@@ -5,10 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import SectionPart from "@/components/SectionPart";
 import SquareAD from "@/components/SquareAd";
 import { categoriesIds, getCategoryIcon, getCategoryNameById } from "@/lib/category";
-import getProducts from "@/lib/products";
-
-
-const ImageAdURL = 'https://media.ouedkniss.com/medias/images/EZAgm/UMHWDudx17WET5Yitn5p8r8yFaSRz1WMt1BWpEWc.jpg';
+import {getProducts} from "@/lib/products";
 
 
 export default async function HomePage() {
@@ -25,12 +22,11 @@ export default async function HomePage() {
     {/* ADs section */}
     <SectionPart className="w-full flex  flex-col gap-5 ">
 
-      <MainAD ImageSrc={ImageAdURL} owner="Yahya" />
+      <MainAD  ImageSrc={'/mainAd.jpg'} owner="اعلان  غير رسمي" />
       <div className="w-full hidden md:block  columns-2 gap-5">
-        <SquareAD ImageSrc={ImageAdURL} owner="Yahya" />
-        <SquareAD ImageSrc={ImageAdURL} owner="Yahya" />
+        <SquareAD  ImageSrc={'/mainAd.jpg'} owner="@Muntaj" />
+        <SquareAD  ImageSrc={'/mainAd.jpg'} owner="@Muntaj" />
       </div>
-      {/* <LineAD ImageSrc={ImageAdURL} owner="Yahya" /> */}
 
     </SectionPart>
 
@@ -40,7 +36,7 @@ export default async function HomePage() {
 
     {/* Products Page */}
 
-    <SectionPart className="columns-1 md:columns-2 lg:columns-3 ">
+    <SectionPart className="justify-center  flex gap-2 flex-wrap">
 
     {
         products && products.map((e)=>
@@ -54,7 +50,7 @@ export default async function HomePage() {
             rated={false}
             id={e._id}
             rating={e.rating ||  0}
-            store={{ name:e.store.name, id: e._id }}
+            store={{ name:e.store.name, id: e.store._id ,contact:e.store.contact}}
           />
         )
     }
