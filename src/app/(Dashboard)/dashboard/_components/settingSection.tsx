@@ -141,6 +141,7 @@ export default function SettingSection({store,refetch}:Props) {
         formData.append('contact[phoneNumbers][0]', data.phoneNumber1); // Convert array to JSON string
         formData.append('contact[email]', data.email);
         formData.append('location[address]', data.address);
+        formData.append('location[country]', store?.location?.country || 'ps');
 
         // Add optional fields
         if (data.phoneNumber2) formData.append('contact[phoneNumbers][1]', data.phoneNumber2); // Convert array to JSON string
