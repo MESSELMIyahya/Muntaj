@@ -54,6 +54,7 @@ function AuthContextProvider({ children, serverAuthenticated, preAuth, data }: P
                     setIsAuthenticated(true);
                     setUserData(res.data.user);
                     refresh()
+                    console.log('here user',res.data.user);
                 }
             } catch (err) {
                 setIsAuthenticated(false);
