@@ -31,6 +31,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 const phoneRegex = new RegExp(
     /(?:[0-9] ?){6,14}[0-9]$/
@@ -57,6 +58,7 @@ export default function CreateProductDialog({ setToggle,refetch, toggle }: Props
     const { updateData } = useUser();
     const [isLoading, setIsLoading] = useState(false);
     const [uploadErr, setUploadErr] = useState("");
+    const { refresh } = useRouter()
 
     // form stuff
     const {
@@ -136,6 +138,7 @@ export default function CreateProductDialog({ setToggle,refetch, toggle }: Props
             setCategory('')
             reset();
             refetch();
+            refresh();
             setToggle(false);
         } catch (err) {
             setUploadErr('حدث شيئ غير متوقع حاول مرة اخر')

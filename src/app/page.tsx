@@ -24,8 +24,8 @@ export default async function HomePage() {
 
       <MainAD  ImageSrc={'/mainAd.jpg'} owner="اعلان  غير رسمي" />
       <div className="w-full hidden md:block  columns-2 gap-5">
-        <SquareAD  ImageSrc={'/mainAd.jpg'} owner="@Muntaj" />
-        <SquareAD  ImageSrc={'/mainAd.jpg'} owner="@Muntaj" />
+        <SquareAD  ImageSrc={'/mainAd.jpg'} owner="اعلان  غير رسمي" />
+        <SquareAD  ImageSrc={'/mainAd.jpg'} owner="اعلان  غير رسمي" />
       </div>
 
     </SectionPart>

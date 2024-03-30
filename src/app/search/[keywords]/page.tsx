@@ -25,7 +25,6 @@ export async function generateMetadata({params}:Props){
 }
 
 
-const ImageAdURL = 'https://media.ouedkniss.com/medias/images/EZAgm/UMHWDudx17WET5Yitn5p8r8yFaSRz1WMt1BWpEWc.jpg';
 
 export default async function SearchPage ({params}:Props){
     const searchText = decodeURIComponent(params.keywords) ;
@@ -43,7 +42,7 @@ export default async function SearchPage ({params}:Props){
         </SectionPart>
     
         <SectionPart>
-            <LineAD ImageSrc={ImageAdURL} owner="Yahya" />
+            <LineAD ImageSrc={'/lineAd2.jpg'} owner="@Muntaj" />
         </SectionPart>
 
         <SectionPart className="justify-center flex gap-2 flex-wrap">
