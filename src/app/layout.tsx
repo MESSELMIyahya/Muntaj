@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Cairo as FontSans } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
-
+import { Analytics } from "@vercel/analytics/react"
 import AuthProvider from '@/auth';
 import Navbar from '@/components/Navbar';
 import AlertProvider from '@/providers/alertProvider';
@@ -40,6 +40,7 @@ export default async function RootLayout({
           </AlertProvider>
         </AuthProvider>
         <Footer/>
+        <Analytics/>
       </body>
     </html>
   );
