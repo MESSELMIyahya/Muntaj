@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar';
 import AlertProvider from '@/providers/alertProvider';
 import ContactProvider from '@/providers/ContactProvider';
 import Footer from '@/components/Footer';
+import QueryProvider from '@/providers/QueryProvider';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -32,15 +33,17 @@ export default async function RootLayout({
       >
         <AuthProvider>
           <AlertProvider>
-            <ContactProvider>
-              {/* @ts-ignore */}
-              <Navbar />
-              {children}
-            </ContactProvider>
+            <QueryProvider>
+              <ContactProvider>
+                {/* @ts-ignore */}
+                <Navbar />
+                {children}
+              </ContactProvider>
+            </QueryProvider>
           </AlertProvider>
         </AuthProvider>
-        <Footer/>
-        <Analytics/>
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );
