@@ -1,16 +1,13 @@
 import CategoriesSection from "@/components/CategoriesPart";
 import MainAD from "@/components/MainAd";
 import PageSection from "@/components/PageSection";
-import ProductCard from "@/components/ProductCard";
 import SectionPart from "@/components/SectionPart";
 import SquareAD from "@/components/SquareAd";
 import { categoriesIds, getCategoryIcon, getCategoryNameById } from "@/lib/category";
-import {getProducts} from "@/lib/products";
+import HomePageProductsSection from "./_components/HomePageProductsSection";
 
 
 export default async function HomePage() {
-  const products = await getProducts();
-
   const categories = categoriesIds.map(e=>({ 
     Icon:getCategoryIcon(e),
     title:getCategoryNameById(e),
@@ -38,22 +35,7 @@ export default async function HomePage() {
 
     <SectionPart className="justify-center  flex gap-2 flex-wrap">
 
-    {
-        products && products.map((e)=>
-          <ProductCard
-            key={e._id}
-            category={e.category}
-            country={e.country}
-            description={e.description}
-            title={e.name}
-            image={e.primaryImage}
-            rated={false}
-            id={e._id}
-            rating={e.rating ||  0}
-            store={{ name:e.store.name, id: e.store._id ,contact:e.store.contact}}
-          />
-        )
-    }
+    <HomePageProductsSection/>
     
     </SectionPart>
 
