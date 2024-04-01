@@ -79,15 +79,16 @@ export default async function page({ params }: Props) {
   return (
     <div className="mt-12 md:mt-16 max-w-6xl m-auto px-2 space-y-8">
       <Card className="relative">
-        <Image
+        <img
           src={store.storeCoverImage}
           width={1600}
           height={1200}
+          loading="lazy"
           alt="store cover"
           className="rounded-md h-[15em] object-cover object-center"
         />
         <div className="absolute -bottom-10 md:-bottom-16 right-6 md:right-12 rounded-full aspect-square border-4 md:border-8 border-white overflow-hidden">
-          <Image
+          <img
             src={store.storeImage}
             width={500}
             height={500}

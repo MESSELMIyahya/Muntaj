@@ -1,8 +1,8 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import PageSection from "@/components/PageSection";
 import SectionPart from "@/components/SectionPart";
-import { getProduct,getProducts, getProductsByCategory } from "@/lib/products";
+import { getProduct, getProductsByCategory } from "@/lib/products";
 import { notFound } from 'next/navigation'
 import ProductCard from "@/components/ProductCard";
 import ProductContent from "./_components/ProductContent";
@@ -47,11 +47,12 @@ export default async function page({params}:PropsType) {
 
         <Card className="flex flex-col md:flex-row gap-3">
           <CardHeader className="w-full md:w-[20em]">
-            <Image
+            <img
               className="w-full h-full border object-contain rounded-xl"
               src={product.primaryImage}
               width={800}
               height={800}
+              loading="lazy"
               alt="product"
             />
           </CardHeader>
