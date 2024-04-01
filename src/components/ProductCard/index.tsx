@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+// import Image from "next/image";
 import { HiStar } from "react-icons/hi";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -61,7 +61,7 @@ export default function ProductCard({
   return (
     <div className="w-full md:w-[21em] p-4 rounded-xl bg-card duration-300 hover:duration-300 transition-colors hover:transition-colors hover:bg-accent hover:shadow-sm border ">
       <div className="w-full h-[16em] relative bg-white border overflow-hidden rounded-xl mb-4 ">
-        <Image
+        <img
           className="w-full h-full object-contain"
           src={image}
           loading="lazy"
